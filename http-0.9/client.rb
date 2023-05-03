@@ -10,7 +10,8 @@ Sync do
 	ARGV.each do |path|
 		endpoint.connect do |connection|
 			stream = Async::IO::Stream.new(connection)
-			stream.puts("GET #{path}")
+			stream.write("GET #{path}\r\n\r\n")
+			stream.flush
 			puts stream.read
 		end
 	end

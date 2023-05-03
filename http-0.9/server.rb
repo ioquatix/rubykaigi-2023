@@ -12,7 +12,8 @@ Async do
 	
 	endpoint.accept do |connection|
 		stream = Async::IO::Stream.new(connection)
-		method, path = stream.gets.split(/\s+/, 2)
+		method, path = stream.read_until("\r\n").split(/\s+/, 2)
+		Console.logger.info(self, "Received #{method} #{path}")
 		
 		if file = files.get(path)
 			Console.logger.info(self, "Serving #{path}")
