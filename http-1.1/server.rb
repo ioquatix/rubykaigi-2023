@@ -8,7 +8,7 @@ require_relative '../files'
 files = Files.new
 
 Async do
-	endpoint = Async::IO::Endpoint.tcp('localhost', 8009)
+	endpoint = Async::IO::Endpoint.tcp('localhost', 8011)
 	
 	endpoint.accept do |connection|
 		stream = Async::IO::Stream.new(connection)
@@ -21,7 +21,7 @@ Async do
 				break if line.empty?
 			end
 			
-			if file = files.get(path)
+			if file = FILES.get(path)
 				Console.logger.info(self, "Serving #{path}")
 				stream.write("HTTP/1.1 200 OK\r\n")
 				stream.write("Content-Type: text/html\r\n")

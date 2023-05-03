@@ -5,7 +5,7 @@ require 'async/io'
 require 'async/io/stream'
 
 Sync do
-	endpoint = Async::IO::Endpoint.tcp('localhost', 8009)
+	endpoint = Async::IO::Endpoint.tcp('localhost', 8010)
 	
 	ARGV.each do |path|
 		endpoint.connect do |connection|

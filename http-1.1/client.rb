@@ -5,12 +5,14 @@ require 'async/io'
 require 'async/io/stream'
 
 Sync do
-	endpoint = Async::IO::Endpoint.tcp('localhost', 8009)
+	endpoint = Async::IO::Endpoint.tcp('localhost', 8011)
 	
 	endpoint.connect do |connection|
 		stream = Async::IO::Stream.new(connection)
 		ARGV.each do |path|
-			stream.write("GET #{path} HTTP/1.0\r\n\r\n")
+			stream.write("GET #{path} HTTP/1.0\r\n"
+			stream.write("Host: localhost\r\n")
+			stream.write("\r\n")
 			stream.flush
 			
 			length = nil

@@ -5,8 +5,6 @@ require 'async/io'
 require 'async/io/stream'
 require_relative '../files'
 
-files = Files.new
-
 Async do
 	endpoint = Async::IO::Endpoint.tcp('localhost', 8009)
 	
@@ -15,7 +13,7 @@ Async do
 		method, path = stream.read_until("\r\n").split(/\s+/, 2)
 		Console.logger.info(self, "Received #{method} #{path}")
 		
-		if file = files.get(path)
+		if file = FILES.get(path)
 			Console.logger.info(self, "Serving #{path}")
 			connection.write(file.read)
 			file.close

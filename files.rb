@@ -19,3 +19,5 @@ class Files
 		end
 	end
 end
+
+FILES = Files.new
