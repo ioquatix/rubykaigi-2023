@@ -14,7 +14,7 @@ SERVER_SETTINGS = {
 	::Protocol::HTTP2::Settings::ENABLE_CONNECT_PROTOCOL => 1,
 }
 
-Async do
+Sync do
 	endpoint = Async::HTTP::Endpoint.parse("http://localhost:8020")
 	endpoint.accept do |connection|
 		framer = Protocol::HTTP2::Framer.new(connection)

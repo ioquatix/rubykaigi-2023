@@ -11,7 +11,7 @@ CLIENT_SETTINGS = {
 	::Protocol::HTTP2::Settings::INITIAL_WINDOW_SIZE => 0x800000,
 }
 
-Async do
+Sync do
 	endpoint = Async::HTTP::Endpoint.parse("http://localhost:8020")
 	connection = endpoint.connect
 	framer = Protocol::HTTP2::Framer.new(connection)

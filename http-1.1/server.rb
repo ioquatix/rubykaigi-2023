@@ -7,7 +7,7 @@ require_relative '../files'
 
 files = Files.new
 
-Async do
+Sync do
 	endpoint = Async::IO::Endpoint.tcp('localhost', 8011)
 	
 	endpoint.accept do |connection|

@@ -5,7 +5,7 @@ require 'async/io'
 require 'async/io/stream'
 require_relative '../files'
 
-Async do
+Sync do
 	endpoint = Async::IO::Endpoint.tcp('localhost', 8009)
 	
 	endpoint.accept do |connection|
