@@ -26,7 +26,7 @@ Sync do
 			super.tap do |stream|
 				def stream.process_headers(frame)
 					headers = super.to_h
-					Console.logger.info(self, "Received headers: #{headers}")
+					Console.logger.info(self, "Received #{headers}")
 					
 					path = headers[':path']
 					

@@ -22,7 +22,7 @@ Sync do
 			while line = stream.read_until("\r\n")
 				break if line.empty?
 				name, value = line.split(/:\s*/, 2)
-				Console.logger.info(self, "Header: #{name} = #{value}")
+				Console.logger.info(self, "Header #{name}: #{value}")
 			end
 			
 			puts stream.read

@@ -34,7 +34,7 @@ Sync do
 		
 		def stream.process_headers(frame)
 			headers = super
-			Console.logger.info(self, "Headers: #{headers}")
+			Console.logger.info(self, "Received #{headers}")
 		end
 		
 		def stream.process_data(frame)

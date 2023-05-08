@@ -28,7 +28,7 @@ Sync do
 				if name.downcase == "content-length"
 					length = Integer(value)
 				end
-				Console.logger.info(self, "Header: #{name} = #{value}")
+				Console.logger.info(self, "Header #{name}: #{value}")
 			end
 			
 			if length
