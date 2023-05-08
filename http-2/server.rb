@@ -31,6 +31,7 @@ Sync do
 					path = headers[':path']
 					
 					if file = FILES.get(path)
+						Console.logger.info(self, "Serving #{path}")
 						self.send_headers(nil, [
 							[":status", "200"],
 							["content-type", "text/html"],
@@ -39,6 +40,7 @@ Sync do
 						self.send_data(file.read, Protocol::HTTP2::END_STREAM)
 						file.close
 					else
+						Console.logger.warn(self, "Could not find #{path}")
 						self.send_headers(nil, [
 							[":status", "404"],
 						], Protocol::HTTP2::END_STREAM)

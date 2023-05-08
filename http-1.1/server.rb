@@ -5,8 +5,6 @@ require 'async/io'
 require 'async/io/stream'
 require_relative '../files'
 
-files = Files.new
-
 Sync do
 	endpoint = Async::IO::Endpoint.tcp('localhost', 8011)
 	
@@ -17,8 +15,9 @@ Sync do
 			Console.logger.info(self, "Received #{method} #{path} #{version}")
 			
 			while line = stream.read_until("\r\n")
-				# Headers...
 				break if line.empty?
+				name, value = line.split(/:\s*/, 2)
+				Console.logger.info(self, "Header: #{name} = #{value}")
 			end
 			
 			if file = FILES.get(path)
