@@ -6,7 +6,7 @@ class Files
 	end
 	
 	def get(path)
-		path = File.expand_path(path, @root)
+		path = File.expand_path(@root + path)
 		
 		if path.start_with?(@root)
 			if File.directory?(path)
@@ -17,6 +17,8 @@ class Files
 				return File.open(path, 'rb')
 			end
 		end
+		
+		return nil
 	end
 end
 
